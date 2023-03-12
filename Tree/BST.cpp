@@ -18,12 +18,12 @@ Node* GetNewNode(int data){
 
 //insert
 void Insert(Node** root, int data){
-    if(*root==NULL){
-        *root=GetNewNode(data);
-    }else if(data<=(*root)->data){
-        (*root)->left=Insert(&((*root)->left),data); //recursion
-    }else{
-        (*root)->right=Insert(&((*root)->right),data);
+    if(*root == NULL){
+        *root = GetNewNode(data);
+    } else if(data <= (*root)->data){
+        Insert(&((*root)->left), data); // recursion
+    } else {
+        Insert(&((*root)->right), data);
     } 
 }
 
