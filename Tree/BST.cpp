@@ -2,7 +2,7 @@
 using namespace std;
 
 struct Node{
-    int date;
+    int data;
     Node* left;
     Node* right;
 };
@@ -20,15 +20,15 @@ Node* GetNewNode(int data){
 void Insert(Node** root, int data){
     if(*root==NULL){
         *root=GetNewNode(data);
-    }else if(data<=root->data){
-        root->left=Insert(root->left,data); //recursion
+    }else if(data<=(*root)->data){
+        (*root)->left=Insert(&((*root)->left),data); //recursion
     }else{
-        root->right=Insert(root->right,data);
+        (*root)->right=Insert(&((*root)->right),data);
     } 
 }
 
-void Search(Node* root,int data){
-    if(root==null) return false;
+bool Search(Node* root,int data){
+    if(root==NULL) return false;
     else if(root->data==data) return true;
     else if(data<=root->data) return Search(root->left,data);
     else{return Search(root->right,data);}
@@ -48,15 +48,15 @@ int main(){
     //All node created in HEAP(dynamic memory,malloc/new)
     
     // Implementation
-    Node* rootPtr;
-    root = NULL;
+    Node* root = NULL;
     
-    Insert(root,15); //root
-    Insert(root,10); //less than root so left [[leftaddr][root]]
-    Insert(root,20); //greater than root so right [[root][rightaddr]]
-    Insert(root,19); //call1 root->right | call2 root->left | insert
+    Insert(&root,15); //root
+    Insert(&root,10); //less than root so left [[leftaddr][root]]
+    Insert(&root,20); //greater than root so right [[root][rightaddr]]
+    Insert(&root,19); //call1 root->right | call2 root->left | insert
     
-    search(root,19);
+    if(Search(root,19)) cout<<"Found"<<endl;
+    else cout<<"Not Found"<<endl;
 
     return 0;
 }
